@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/Bootcamp-23-todo-list-api-web/apis/Bootcamp-23-todo-list-api",
+      "type": "apis.azure"
+    }
+  }
+}
