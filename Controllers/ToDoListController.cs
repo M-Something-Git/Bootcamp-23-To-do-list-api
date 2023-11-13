@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bootcamp_23_todo_list_api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class ToDoListController : ControllerBase
     {
         private readonly IToDoListService _toDoListService;
