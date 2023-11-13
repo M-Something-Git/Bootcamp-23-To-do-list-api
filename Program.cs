@@ -1,27 +1,18 @@
 using Bootcamp_23_todo_list_api.Models;
-using Bootcamp_23_todo_list_api.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.Configure<TodoListDatabaseSettings>(
-       builder.Configuration.GetSection(nameof(TodoListDatabaseSettings)));
-
-builder.Services.AddSingleton<ITodoListDatabaseSettings>(sp =>
-sp.GetRequiredService<IOptions<TodoListDatabaseSettings>>().Value);
-
-builder.Services.AddSingleton<IMongoClient>(sp =>
-{
-    var settings = sp.GetRequiredService<IOptions<TodoListDatabaseSettings>>().Value;
-    return new MongoClient(settings.ConnectionString);
-});
-
-builder.Services.AddSingleton<IToDoListService, ToDoListService>(); 
 
 builder.Services.AddControllers();
+
+var connection = builder.Configuration.GetConnectionString("ConnectionString:DefaultConnection");
+
+builder.Services.AddDbContext<Bootcamp23DemoContext>(options =>
+    options.UseSqlServer("Server=bootcamp23demo.database.windows.net; Database=bootcamp-23-demo; User ID=Bootcamp23Admin; Password=Bootcamp23Password1*;Trusted_Connection=False;Encrypt=True;"));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
