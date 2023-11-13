@@ -1,17 +1,15 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-namespace Bootcamp_23_todo_list_api.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Bootcamp_23_todo_list_api.Models;
+
+public partial class ToDoList
 {
-    public class ToDoList
-    {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; } = string.Empty;
-        [BsonElement("UserId")]
-        public string UserId { get; set; }
-        [BsonElement("Task")]
-        public string Task { get; set; }
-        [BsonElement("Status")]
-        public string Status { get; set; }
-    }
+    public int Id { get; set; }
+
+    public string UserId { get; set; } = null!;
+
+    public string Task { get; set; } = null!;
+
+    public string Status { get; set; } = null!;
 }
